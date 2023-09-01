@@ -4,7 +4,7 @@ import { faChild } from '@fortawesome/free-solid-svg-icons'
 
 export default function Footer(){
     return(
-        <div className="h-[50vh] text-white bg-gray-800 flex items-center">
+        <div className="h-[50vh] text-white w-full flex items-center">
             <div className="w-1/4 flex justify-center items-center">
             <h1 className="playball  text-9xl">A</h1>
             </div>
