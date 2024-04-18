@@ -1,8 +1,29 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import {Playball} from "next/font/google";
+import {Nosifer} from "next/font/google";
+import {Arbutus} from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap'
+});
+const playball = Playball({ 
+  subsets: ["latin"],
+  weight:'400',
+  variable: '--font-playball'
+});
+const yatra = Nosifer({ 
+  subsets: ["latin"],
+  weight:'400',
+  variable: '--font-yatra'
+});
+const uncial = Arbutus({ 
+  subsets: ["latin"],
+  weight:'400',
+  variable: '--font-unical'
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${playball.variable} ${uncial.variable} ${yatra.variable} ${inter.className}`}>{children}</body>
     </html>
   );
 }

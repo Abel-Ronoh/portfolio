@@ -13,17 +13,28 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --blue:#1A2238;
+    --light-blue:#9DAAF2;
+    --text-color:#FF6A3D;
+    --text-color2: #F4DB7D;
+    
   }
 }
-
+.playball{
+  font-family: var(--font-playball);
+}
+.yatra{
+  font-family: var(--font-yatra);
+}
+.unical{
+  font-family: var(--font-unical);
+}
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to left, var(--blue), black);
+}
+html {
+  font-family: var(--font-inter);
 }
 
 @layer utilities {
