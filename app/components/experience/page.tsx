@@ -1,20 +1,29 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { db } from "../../../firebase-config";
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 
-async function fetchDataFromFirestore() {
+// Define an interface for the structure of your Firestore documents
+interface Experience {
+    id: string;
+    image: string;
+    header: string;
+    description: string;
+    // Add more properties if necessary
+}
+
+async function fetchDataFromFirestore(): Promise<Experience[]> {
     const querySnapshot = await getDocs(collection(db, "experiences"));
-    const data = [];
-    querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() });
+    const data: Experience[] = [];
+    querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
+        data.push({ id: doc.id, ...doc.data() } as Experience);
     });
     console.log(data); // Logging the data here
     return data;
 }
 
 export default function Experience() {
-    const [experiences, setExperiences] = useState([]);
+    const [experiences, setExperiences] = useState<Experience[]>([]);
 
     useEffect(() => {
         async function fetchExperiences() {
