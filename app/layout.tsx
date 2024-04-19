@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import {Playball} from "next/font/google";
 import {Eczar} from "next/font/google";
 import {Arbutus} from "next/font/google";
+import {Playfair_Display} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -13,6 +14,11 @@ const playball = Playball({
   subsets: ["latin"],
   weight:'400',
   variable: '--font-playball'
+});
+const playfair = Playfair_Display({ 
+  subsets: ["latin"],
+  weight:'400',
+  variable: '--font-playfair'
 });
 const yatra = Eczar({ 
   subsets: ["latin"],
@@ -37,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${playball.variable} ${uncial.variable} ${yatra.variable} ${inter.className}`}>{children}</body>
+      <body className={`${playball.variable} ${playfair.variable} ${uncial.variable} ${yatra.variable} ${inter.className}`}>{children}</body>
     </html>
   );
 }

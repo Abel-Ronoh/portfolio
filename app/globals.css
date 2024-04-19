@@ -23,6 +23,9 @@
 .playball{
   font-family: var(--font-playball);
 }
+.playfair{
+  font-family: var(--font-playfair);
+}
 .yatra{
   font-family: var(--font-yatra);
 }
