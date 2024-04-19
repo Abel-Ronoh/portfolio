@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import {Playball} from "next/font/google";
-import {Nosifer} from "next/font/google";
+import {Eczar} from "next/font/google";
 import {Arbutus} from "next/font/google";
 import "./globals.css";
 
@@ -14,7 +14,7 @@ const playball = Playball({
   weight:'400',
   variable: '--font-playball'
 });
-const yatra = Nosifer({ 
+const yatra = Eczar({ 
   subsets: ["latin"],
   weight:'400',
   variable: '--font-yatra'
