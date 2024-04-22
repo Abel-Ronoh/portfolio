@@ -15,6 +15,7 @@ const config: Config = {
           lightblue:'#9DAAF2',
           textcolor:'#FF6A3D',
           textcolor2: '#F4DB7D',
+          bg: '#363636',
         },
       },
       backgroundImage: {
