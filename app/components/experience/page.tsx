@@ -1,35 +1,47 @@
 'use client'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from "../../../firebase-config";
-import { getDocs, collection, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
-// import { Console } from 'console';
+import { getDocs, collection, query, where, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 
-// Define an interface for the structure of your Firestore documents
-interface Comments{
-    id:string;
+
+
+interface Comments {
+    id: string;
     postId: string;
-    date:Date;
+    date: Date;
     username: string;
     comment: string;
 }
+
 interface Experience {
     id: string;
     image: string;
     header: string;
     description: string;
+    postId: string;
     index: number;
 }
-
-
 
 async function fetchDataFromFirestore(): Promise<Experience[]> {
     const querySnapshot = await getDocs(collection(db, "experiences"));
     const data: Experience[] = [];
-    querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
-        data.push({ id: doc.id, ...doc.data() } as Experience);
+    querySnapshot.forEach((docs: QueryDocumentSnapshot<DocumentData>) => {
+        data.push({ id: docs.id, ...docs.data() } as Experience);
     });
-    
-    console.log(data); // Logging the data here
+
+    console.log(data);
+    return data;
+}
+
+async function fetchComments(postId: string): Promise<Comments[]> {
+    const q = query(collection(db, "comments"), where("postId", "==", postId));
+    const querySnapshot = await getDocs(q);
+    const data: Comments[] = [];
+    querySnapshot.forEach((docs: QueryDocumentSnapshot<DocumentData>) => {
+        data.push({ id: docs.id, ...docs.data() } as Comments);
+    });
+
+    console.log(data);
     return data;
 }
 
@@ -37,6 +49,7 @@ async function fetchDataFromFirestore(): Promise<Experience[]> {
 
 export default function Experience() {
     const [experiences, setExperiences] = useState<Experience[]>([]);
+    const [commentsMap, setCommentsMap] = useState<{ [postId: string]: Comments[] }>({});
 
     useEffect(() => {
         async function fetchExperiences() {
@@ -45,11 +58,27 @@ export default function Experience() {
         }
         fetchExperiences();
     }, []);
-    var i=0;
-    experiences.forEach(experience =>{
+
+    useEffect(() => {
+        async function fetchCommentsData() {
+            const commentsData: { [postId: string]: Comments[] } = {};
+            for (const experience of experiences) {
+                const comments = await fetchComments(experience.postId);
+                commentsData[experience.postId] = comments;
+            }
+            setCommentsMap(commentsData);
+        }
+        if (experiences.length > 0) {
+            fetchCommentsData();
+        }
+    }, [experiences]);
+console.log(commentsMap)
+    var i = 0;
+    experiences.forEach(experience => {
         i++;
         experience.index = i;
-    })
+    });
+
     return (
         <div className="h-[100vh] w-full flex flex-col items-center my-20">
             <h1 className="text-5xl text-custom-lightblue">EXPERIENCES</h1>
@@ -63,19 +92,20 @@ export default function Experience() {
                             <p>{experience.description}</p>
                         </div>
                         <h4 className='playball tracking-widest text-lg absolute bottom-0 right-20 font-bold'>see comments</h4>
-                        <hr className='absolute bottom-2 left-20 w-4/5 bg-white'/>
+                        <hr className='absolute bottom-2 left-20 w-4/5 bg-white' />
                         <div className='absolute  rounded-2xl w-1/3 h-3/4 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue border border-white z-20'>
                             <div className='relative flex  w-full bg-red-500 '>
                                 <h1 className='absolute mx-0 text-xl font-thin text-custom-lightblue top-0 right-0  '>x</h1>
                             </div>
                             <ul className='rounded-xl my-1 bg-gray-700'>
-                                <li className='mx-5'>
-                                    <h1>username</h1>
-                                    <h3>comment</h3>
-                                </li>
-                                {/* <hr className='bg-white w-full shadow-neumorphism'/> */}
+                                {commentsMap[experience.postId]?.map((comment) => (
+                                    <li key={comment.id} className='mx-5'>
+                                        <h1>{comment.username}</h1>
+                                        <h3>{comment.postId}</h3>
+                                    </li>
+                                ))}
                             </ul>
-                           
+
                         </div>
                     </li>
                 ))}
@@ -83,4 +113,3 @@ export default function Experience() {
         </div>
     );
 }
-
