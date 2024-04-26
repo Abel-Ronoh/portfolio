@@ -10,7 +10,7 @@ interface Comments {
     postId: string;
     date: Date;
     username: string;
-    comment: string;
+    content: string;
 }
 
 interface Experience {
@@ -97,16 +97,20 @@ console.log(commentsMap)
                         </div>
                         <h4 className='playball tracking-widest text-lg absolute bottom-0 right-20 font-bold'>see comments</h4>
                         <hr className='absolute bottom-2 left-20 w-4/5 bg-white' />
-                        <div className='absolute flex flex-col rounded-2xl w-1/4 h-4/5 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue border border-white z-20'>
-                            <div className='relative flex  w-full bg-red-500 '>
-                                <h1 className='absolute mx-0 text-xl font-thin text-custom-lightblue top-0 right-0  '>x</h1>
+                        <div className='absolute flex flex-col rounded-2xl w-1/4 h-4/5 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue  z-20'>
+                            <div className='relative flex  w-full text-center justify-between '>
+                                <h1 className='playball tracking-widest m-1 text-xl font-thin w-4/5'>Leave Comment</h1>
+                                <h1 className=' mx-3 text-xl font-thin text-custom-lightblue top-0 right-0  '>x</h1>
                                 
                             </div>
-                            <ul className='rounded-xl my-1 bg-gray-700'>
+                            <ul className=' my-1 '>
                                 {commentsMap[experience.postId]?.map((comment) => (
-                                    <li key={comment.id} className='mx-5'>
-                                        <h1>{comment.username}</h1>
-                                        <h3>{comment.postId}</h3>
+                                    <li key={comment.id} className='flex  pb-4 justify-between items-center px-5 mb-[1px] min-h-10'>
+                                        <div>
+                                        <h1 className='text-xs tracking-widest font-thin'>{comment.username}</h1>
+                                        <h3 className='text-xs tracking-widest text-white'>{comment.content}</h3>
+                                        </div>
+                                        <p className='text-xs font-thin'>time</p>
                                     </li>
                                 ))}
                             </ul>
