@@ -50,7 +50,7 @@ async function fetchComments(postId: string): Promise<Comments[]> {
 export default function Experience() {
     const [experiences, setExperiences] = useState<Experience[]>([]);
     const [commentsMap, setCommentsMap] = useState<{ [postId: string]: Comments[] }>({});
-
+    const [comments, toggleComments] = useState(false);
     useEffect(() => {
         async function fetchExperiences() {
             const data = await fetchDataFromFirestore();
@@ -75,7 +75,7 @@ export default function Experience() {
         if (experiences.length > 0) {
             fetchCommentsData();
         }
-    }, [experiences]);
+    }, [comments]);
 console.log(commentsMap)
     var i = 0;
     experiences.forEach(experience => {
@@ -83,8 +83,15 @@ console.log(commentsMap)
         experience.index = i;
     });
 
+    function seeComments(){
+        toggleComments(!comments)
+        
+    }
+    console.log(comments)
+
     return (
         <div className="relative h-[100vh] w-full flex flex-col items-center my-20">
+            <button onClick={seeComments}>helllllo</button>
             <h1 className="text-5xl text-custom-lightblue">EXPERIENCES</h1>
             <ul className='w-full h-full'>
                 {experiences.map((experience) => (
@@ -95,15 +102,16 @@ console.log(commentsMap)
                             <h1 className='text-6xl font-bold text-custom-textcolor2'>{experience.header}</h1>
                             <p>{experience.description}</p>
                         </div>
-                        <h4 className='playball tracking-widest text-lg absolute bottom-0 right-20 font-bold'>see comments</h4>
+                        <h4 onClick={seeComments} className='playball cursor-pointer tracking-widest text-lg absolute bottom-0 right-20 font-thin'>see comments</h4>
                         <hr className='absolute bottom-2 left-20 w-4/5 bg-white' />
+                        {comments&&
                         <div className='absolute flex flex-col rounded-2xl w-1/4 h-4/5 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue  z-20'>
                             <div className='relative flex  w-full text-center justify-between '>
                                 <h1 className='playball tracking-widest m-1 text-xl font-thin w-4/5'>Leave Comment</h1>
                                 <h1 className=' mx-3 text-xl font-thin text-custom-lightblue top-0 right-0  '>x</h1>
                                 
                             </div>
-                            <ul className=' my-1 '>
+                            <ul className=' my-1 }' >
                                 {commentsMap[experience.postId]?.map((comment) => (
                                     <li key={comment.id} className='flex  pb-4 justify-between items-center px-5 mb-[1px] min-h-10'>
                                         <div>
@@ -120,9 +128,11 @@ console.log(commentsMap)
                             <Image src={img} alt="My Image" className='w-auto mx-2' />
                             </div>
                          </div>
+}
                     </li>
                 ))}
             </ul>
         </div>
+
     );
 }
