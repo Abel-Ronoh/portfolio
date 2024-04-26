@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from "../../../firebase-config";
 import { getDocs, collection, query, where, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
-
-
+import Image from 'next/image';
+import img from '../../../assets/send.png'
 
 interface Comments {
     id: string;
@@ -63,11 +63,15 @@ export default function Experience() {
         async function fetchCommentsData() {
             const commentsData: { [postId: string]: Comments[] } = {};
             for (const experience of experiences) {
-                const comments = await fetchComments(experience.postId);
-                commentsData[experience.postId] = comments;
+                if (experience.postId) { // Check if postId is defined
+                    console.log("Experience postId:", experience.postId);
+                    const comments = await fetchComments(experience.postId);
+                    commentsData[experience.postId] = comments;
+                }
             }
             setCommentsMap(commentsData);
         }
+        
         if (experiences.length > 0) {
             fetchCommentsData();
         }
@@ -80,7 +84,7 @@ console.log(commentsMap)
     });
 
     return (
-        <div className="h-[100vh] w-full flex flex-col items-center my-20">
+        <div className="relative h-[100vh] w-full flex flex-col items-center my-20">
             <h1 className="text-5xl text-custom-lightblue">EXPERIENCES</h1>
             <ul className='w-full h-full'>
                 {experiences.map((experience) => (
@@ -93,9 +97,10 @@ console.log(commentsMap)
                         </div>
                         <h4 className='playball tracking-widest text-lg absolute bottom-0 right-20 font-bold'>see comments</h4>
                         <hr className='absolute bottom-2 left-20 w-4/5 bg-white' />
-                        <div className='absolute  rounded-2xl w-1/3 h-3/4 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue border border-white z-20'>
+                        <div className='absolute flex flex-col rounded-2xl w-1/4 h-4/5 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue border border-white z-20'>
                             <div className='relative flex  w-full bg-red-500 '>
                                 <h1 className='absolute mx-0 text-xl font-thin text-custom-lightblue top-0 right-0  '>x</h1>
+                                
                             </div>
                             <ul className='rounded-xl my-1 bg-gray-700'>
                                 {commentsMap[experience.postId]?.map((comment) => (
@@ -105,8 +110,12 @@ console.log(commentsMap)
                                     </li>
                                 ))}
                             </ul>
-
-                        </div>
+                            <div className='absolute bottom-2 w-full flex justify-between '>
+                            <input type="text" className=' bg-transparent border text-center border-custom-lightblue text-sm p-1 mx-3 rounded-xl  w-1/4 left-0' placeholder='username' />
+                            <input type="text" className=' bg-transparent border text-center border-custom-lightblue text-sm p-1 mx-1 rounded-xl  w-3/5 ' placeholder='comment' />
+                            <Image src={img} alt="My Image" className='w-auto mx-2' />
+                            </div>
+                         </div>
                     </li>
                 ))}
             </ul>
