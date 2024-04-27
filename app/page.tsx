@@ -13,7 +13,7 @@ export default function Home() {
     <div className="animate__animated animate__delay-1s my-3 animate__fadeIn">
     <h1 className="text-custom-textcolor tracking-wider mx-5 lg:mx-20 text-4xl font-thin my-3">Software Developer & Engineer For The WEB</h1>
     <p className=" tracking-wider lg:mx-20 w-[35rem]">I have 1 Year of experience developing functional full stack applications with <span className=" tracking-wider font-normal text-custom-textcolor2">REACT JS, NEXT JS, NODE JS, FIREBASE & MONGODB</span>  </p>
-    <button className="hover:bg-custom-textcolor  hover:text-custom-blue yatra text-lg text-custom-lightblue border border-white  rounded-md lg:mx-20 my-10 px-5  py-4 tracking-widest font-black">See my work</button>
+    <button className="sticky top-10 -z-40 hover:bg-custom-textcolor  hover:text-custom-blue yatra text-lg text-custom-lightblue border border-white  rounded-md lg:mx-20 my-10 px-5  py-4 tracking-widest font-black">See my work</button>
     </div>
     </div>
     <Experience/>
