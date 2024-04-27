@@ -90,7 +90,7 @@ console.log(commentsMap)
     console.log(comments)
 
     return (
-        <div className="relative h-[100vh] w-full flex flex-col items-center my-20">
+        <div className="relative h-[80vh] w-full flex flex-col items-center my-20">
             
             <h1 className="text-5xl text-custom-lightblue">EXPERIENCES</h1>
             <ul className='w-full h-full'>
@@ -98,21 +98,20 @@ console.log(commentsMap)
                     <li key={experience.id} className='relative flex w-full h-full items-center justify-between'>
                         {experience.index}
                         <img className={`animate__animated animate__bounceIn animate__delay-2s w-1/3 m-20 ${experience.index % 2 === 0 ? 'order-2' : 'order-1'}`} src={experience.image} alt="IMAGE" />
-                        <div className={`animate__animated animate__fadeInUp h-full flex flex-col justify-center text-end mx-20 ${experience.index % 2 === 0 ? 'order-1' : 'order-2'}`}>
+                        <div className={`animate__animated animate__fadeInUp  flex flex-col justify-center text-end mx-20 ${experience.index % 2 === 0 ? 'order-1' : 'order-2'}`}>
                             <h1 className='text-6xl font-bold text-custom-textcolor2'>{experience.header}</h1>
                             <p>{experience.description}</p>
-                            <h4 onClick={seeComments} className='playball absolute cursor-pointer tracking-widest text-lg mt-20  bottom-0 right-0 font-thin'>see comments</h4>
                         
                         </div>
                         {/* <hr className='absolute bottom-2 left-20 w-4/5 bg-white' /> */}
                         {comments&&
-                        <div className='absolute flex flex-col rounded-2xl w-1/4 h-4/5 right-20 bottom-5 bg-gradient-to-r from-custom-bg to-custom-blue  z-20'>
+                        <div className='absolute animate__animated animate__bounceInRight  flex flex-col rounded-2xl w-1/4 h-4/5 right-20 bottom-10 bg-gradient-to-r from-custom-bg to-custom-blue  z-20'>
                             <div className='relative flex  w-full text-center justify-between '>
                                 <h1 className='playball tracking-widest m-1 text-xl font-thin w-4/5'>Leave Comment</h1>
                                 <h1 onClick={seeComments} className='cursor-pointer mx-3 text-xl font-thin text-custom-lightblue top-0 right-0  '>x</h1>
                                 
                             </div>
-                            <ul className=' my-1 }' >
+                            <ul className=' mb-10' >
                                 {commentsMap[experience.postId]?.map((comment) => (
                                     <li key={comment.id} className='flex  pb-4 justify-between items-center px-5 mb-[1px] min-h-10'>
                                         <div>
@@ -130,6 +129,8 @@ console.log(commentsMap)
                             </div>
                          </div>
 }
+                            <h4 onClick={seeComments} className='playball  absolute cursor-pointer tracking-widest text-lg mr-20   bottom-0 right-0 font-thin'>see comments</h4>
+
                     </li>
                 ))}
             </ul>
