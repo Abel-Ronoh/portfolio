@@ -23,6 +23,9 @@
 .playball{
   font-family: var(--font-playball);
 }
+.splash{
+  font-family: var(--font-splash);
+}
 .playfair{
   font-family: var(--font-playfair);
 }

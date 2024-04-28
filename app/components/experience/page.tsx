@@ -90,12 +90,12 @@ console.log(commentsMap)
     console.log(comments)
 
     return (
-        <div className="relative h-[80vh] w-full flex flex-col items-center my-20">
+        <div className="relative  w-full flex flex-col items-center my-20">
             
-            <h1 className="text-5xl text-custom-lightblue">EXPERIENCES</h1>
+            <h1 className="text-5xl yatra text-custom-lightblue">EXPERIENCES</h1>
             <ul className='w-full h-full'>
                 {experiences.map((experience) => (
-                    <li key={experience.id} className='relative flex w-full h-full items-center justify-between'>
+                    <li key={experience.id} className='relative flex w-full h-[80vh] items-center justify-between'>
                         {experience.index}
                         <img className={`animate__animated animate__bounceIn animate__delay-2s w-1/3 m-20 ${experience.index % 2 === 0 ? 'order-2' : 'order-1'}`} src={experience.image} alt="IMAGE" />
                         <div className={`animate__animated animate__fadeInUp  flex flex-col justify-center text-end mx-20 ${experience.index % 2 === 0 ? 'order-1' : 'order-2'}`}>

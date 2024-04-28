@@ -1,6 +1,7 @@
 import Nav from "./components/nav/page";
 import Experience from "./components/experience/page";
 import 'animate.css';
+import Footer from "./components/footer/page";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
     </div>
     </div>
     <Experience/>
+    <Footer/>
     <Nav/>
     </>
   );
