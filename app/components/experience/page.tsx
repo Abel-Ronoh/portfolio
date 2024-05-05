@@ -4,7 +4,7 @@ import { db } from "../../../firebase-config";
 import { getDocs, collection, query, where, DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 import Image from 'next/image';
 import img from '../../../assets/send.png'
-import loading from '../../../assets/load.png'
+import loading from '../../../assets/loading.png'
 
 interface Comments {
     id: string;
@@ -91,13 +91,13 @@ console.log(commentsMap)
     console.log(comments)
 
     return (
-        <div className="relative  w-full flex flex-col items-center ">
+        <div className="relative  w-full flex flex-col items-center my-10">
             
             <h1 className="text-5xl yatra text-custom-lightblue  w-full text-center">EXPERIENCES</h1>
             {experiences.length === 0 && (
                 <>
-                <Image src={loading} alt="My Image" className='w-7 m-2 animate__animated animate__rotateIn animate__infinite' />
-    <h1 className='text-white h-20'>loading...</h1>
+                <Image src={loading} alt="My Image" className='w-7 mb-2 mt-10 animate__animated animate__rotateIn animate__infinite' />
+    <h1 className='animate__animated animate__rubberBand animate__infinite text-white h-20'>loading...</h1>
     </>
 )}
 {experiences.length > 0 && (
