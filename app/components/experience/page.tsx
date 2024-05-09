@@ -130,11 +130,11 @@ console.log(commentsMap)
                                     </li>
                                 ))}
                             </ul>
-                            <div className='absolute bottom-2 w-full flex justify-between '>
+                            <form className='absolute bottom-2 w-full flex justify-between '>
                             <input type="text" className=' bg-transparent border text-center border-custom-lightblue text-sm p-1 mx-3 rounded-xl  w-1/4 left-0' placeholder='username' />
                             <input type="text" className=' bg-transparent border text-center border-custom-lightblue text-sm p-1 mx-1 rounded-xl  w-3/5 ' placeholder='comment' />
-                            <Image src={img} alt="My Image" className='w-auto mx-2' />
-                            </div>
+                            <button type='submit' className=''><Image src={img} alt="My Image" className='w-auto mx-2' /></button>
+                            </form>
                          </div>
 }
                             <h4 onClick={seeComments} className='playball  absolute cursor-pointer tracking-widest text-lg mr-20   bottom-0 right-0 font-thin'>see comments</h4>
