@@ -51,7 +51,7 @@ export default function Home() {
 
       <main className="p-4 flex flex-col items-center">
         <section className="relative h-screen w-full flex flex-col justify-end md:justify-center items-center text-center px-4">
-          <h1 className="text-4xl font-[uncial] md:text-5xl lg:text-6xl font-bold mb-4">I'm Abel Ronoh.</h1>
+          <h1 className="text-4xl font-[uncial] md:text-5xl lg:text-6xl font-bold mb-4">I&apos;m Abel Ronoh.</h1>
           <p className="max-w-lg md:max-w-xl lg:max-w-2xl text-base md:text-lg lg:text-xl mb-4">
             A <span className='font-bold'>Software Engineer</span> based on the web. Building <span className='font-bold'>full-stack web applications</span> with a focus on the overall <span className='font-bold'>architecture</span> and the <span className='font-bold'>front end.</span>
           </p>
