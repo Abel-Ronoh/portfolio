@@ -6,7 +6,6 @@ import {Black_And_White_Picture} from "next/font/google";
 import {Arbutus} from "next/font/google";
 import {Playfair_Display} from "next/font/google";
 import "./globals.css";
-import Nav from "./components/nav/page";
 
 const inter = Inter({ 
   subsets: ["latin"],
