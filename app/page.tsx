@@ -71,7 +71,7 @@ export default function Home() {
             <h2 className='font-black ml-3 text-[#8B8B8B]'>Design</h2>
           </div>
           <div className='flex items-center justify-center'>
-            <Image src={web} alt="web" className="" width={38} height={38}/>
+            <Image src={web} alt='web' className="" width={38} height={38}/>
             <h2 className='font-black ml-3 text-[#8B8B8B]'>Web</h2>
           </div>
           
