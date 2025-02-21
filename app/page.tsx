@@ -59,24 +59,24 @@ export default function Home() {
         
           <section className="md:absolute md:bottom-1 md:mb-16 md:flex hidden md:justify-between md:items-center md:w-4/5 ">
           <div className='flex items-center justify-center'>
-            <Image src={architecture} className="" width={38} height={38}/>
+            <Image src={architecture} className="" alt='arc' width={38} height={38}/>
             <h2 className='font-black ml-3 text-[#8B8B8B]'>Architecture</h2>
           </div>
           <div className='flex items-center justify-center'>
-            <Image src={db} className="" width={38} height={38}/>
+            <Image src={db} className="" alt='db' width={38} height={38}/>
             <h2 className='font-black ml-3 text-[#8B8B8B]'>DB design</h2>
           </div>
           <div className='flex items-center justify-center'>
-            <Image src={figma} className="grayscale hover:grayscale-0 transition-300]" width={38} height={38}/>
+            <Image src={figma} alt='figma' className="grayscale hover:grayscale-0 transition-300]" width={38} height={38}/>
             <h2 className='font-black ml-3 text-[#8B8B8B]'>Design</h2>
           </div>
           <div className='flex items-center justify-center'>
-            <Image src={web} className="" width={38} height={38}/>
+            <Image src={web} alt="web" className="" width={38} height={38}/>
             <h2 className='font-black ml-3 text-[#8B8B8B]'>Web</h2>
           </div>
           
           <div className='flex items-center justify-center'>
-            <Image src={firebase} className="" width={38} height={38}/>
+            <Image src={firebase} alt='firebase' className="" width={38} height={38}/>
             <h2 className='font-black ml-3 text-[#8B8B8B]'>Serverless</h2>
           </div>
         </section>
